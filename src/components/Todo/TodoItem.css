@@ -1,0 +1,141 @@
+.todo-item {
+    border: 1px solid #ccc;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+    position: relative;
+}
+
+.todo-item h3 {
+    margin: 0;
+    margin-bottom: 0.5rem;
+}
+
+.todo-item p {
+    margin: 0;
+}
+
+.todo-item button {
+    background-color: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-left: 0.5rem;
+}
+
+.todo-item button:focus {
+    outline: none;
+}
+
+
+.todo-item-controls {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.todo-item button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin-left: 0.5rem;
+}
+
+.todo-item .edit-button {
+    font-size: 1.2rem;
+}
+
+.todo-item .delete-button {
+    font-size: 1.5rem;
+}
+
+.todo-item button:focus {
+    outline: none;
+}
+
+.todo-item label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.todo-item input[type='text'] {
+    display: block;
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.todo-item input[type='checkbox'] {
+    margin-left: 0.5rem;
+}
+
+.todo-item .save-button {
+    font-size: 1.2rem;
+}
+
+.todo-item.completed {
+    background-color: #3c345c;
+}
+
+.todo-item-controls .completed-checkmark {
+    font-size: 20px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.completed-checkmark:hover {
+    color: #d65422;
+}
+
+.todo-item {
+    background-color: #d6e0f0;
+    border-radius: 5px;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.todo-item.completed {
+    background-color: #a2d8a3;
+}
+
+.todo-item-controls {
+    display: flex;
+}
+
+.completed-checkmark {
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.edit-button,
+.save-button,
+.delete-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    margin-left: 0.5rem;
+}
+
+.edit-button {
+    color: #4e6190;
+}
+
+.save-button {
+    color: #124c81;
+}
+
+.delete-button {
+    color: #ed2d28;
+}

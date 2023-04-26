@@ -1,0 +1,45 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #124c81;
+    color: #fff;
+}
+
+.App {
+    text-align: center;
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #4e6190;
+    border-radius: 10px;
+}
+
+.todo-item {
+    background-color: #998bbb;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.todo-item-controls {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.edit-button,
+.delete-button,
+.save-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    color: #3c345c;
+    margin-left: 10px;
+}
+
+.edit-button:hover,
+.delete-button:hover,
+.save-button:hover {
+    color: #d65422;
+}

@@ -2,8 +2,7 @@ import axios from 'axios';
 
 
 export const fetchTodos = async () => {
-    console.log(process.env.API_URL);
-    const response = await axios.get(process.env.API_URL);
+    const response = await axios.get(`${process.env.REACT_APP_API_URL}/todos`);
     return response.data;
 };
 
@@ -12,12 +11,11 @@ export const createTodo = async (todo) => {
     return response.data;
 };
 
-export async function sendTodo() {
-    const todo = {
-        title: "Test Todo",
-        description: "This is a test todo",
-        completed: false
-    };
-    const newTodo = await createTodo(todo);
-    console.log(newTodo);
-}
+export const updateTodo = async (id, todo) => {
+    const response = await axios.put(`${process.env.REACT_APP_API_URL}/todos/${id}`, todo);
+    return response.data;
+};
+
+export const deleteTodo = async (id) => {
+    await axios.delete(`${process.env.REACT_APP_API_URL}/todos/${id}`);
+};
