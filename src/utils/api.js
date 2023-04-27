@@ -12,6 +12,8 @@ export const createTodo = async (todo) => {
 };
 
 export const updateTodo = async (id, todo) => {
+    console.log('called', id);
+
     const response = await axios.put(`${process.env.REACT_APP_API_URL}/todos/${id}`, todo);
     return response.data;
 };

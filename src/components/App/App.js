@@ -1,45 +1,46 @@
 import { useState, useEffect } from 'react';
 import './App.css';
-import { fetchTodos, createTodo, sendTodo } from '../../utils/api';
-import TodoItem from '../Todo/TodoItem';
-import { useCallback } from 'react';
-import CreateTodoForm from '../Todo/CreateTodoForm';
+import CreateTodoForm from '../CreateTodoForm/CreateTodoForm';
+import TodoList from '../TodoList/TodoList';
+import { fetchTodos, createTodo, updateTodo, deleteTodo } from '../../utils/api';
 
 function App() {
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const getTodos = async () => {
       const data = await fetchTodos();
       setTodos(data);
     };
-    fetchData();
+    getTodos();
   }, []);
 
-  const updateTodoInState = (updatedTodo) => {
-    setTodos(todos.map((todo) => (todo._id === updatedTodo._id ? updatedTodo : todo)));
+  const handleCreateTodo = async (newTodo) => {
+    const data = await createTodo(newTodo);
+    setTodos((prevTodos) => [...prevTodos, data]);
   };
 
-  const deleteTodoFromState = (id) => {
-    setTodos(todos.filter((todo) => todo._id !== id));
+  const handleUpdateTodo = async (id, updatedTodo) => {
+    const data = await updateTodo(id, updatedTodo);
+    setTodos((prevTodos) =>
+      prevTodos.map((todo) => (todo._id === data._id ? data : todo))
+    );
   };
-  const addTodoToState = (newTodo) => {
-    setTodos([...todos, newTodo]);
+
+  const handleDeleteTodo = async (id) => {
+    await deleteTodo(id);
+    setTodos((prevTodos) => prevTodos.filter((todo) => todo._id !== id));
   };
 
   return (
     <div className="App">
-      <h1>Todo List</h1>
-      <CreateTodoForm addTodoToState={addTodoToState} />
-      <div>
-        {todos.map((todo) => (
-          <TodoItem
-            key={todo._id}
-            todo={todo}
-            updateTodoInState={updateTodoInState}
-            deleteTodoFromState={deleteTodoFromState}
-          />
-        ))}
+      <CreateTodoForm onCreateTodo={handleCreateTodo} />
+      <div className="todo-list-container">
+        <TodoList
+          todos={todos}
+          onUpdateTodo={handleUpdateTodo}
+          onDeleteTodo={handleDeleteTodo}
+        />
       </div>
     </div>
   );
