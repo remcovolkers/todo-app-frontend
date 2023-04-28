@@ -9,6 +9,16 @@
     margin-bottom: 1rem;
     position: relative;
     width: 500px;
+    overflow: hidden;
+}
+
+.todo-item-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    z-index: 1;
 }
 
 .todo-item.completed {
@@ -97,6 +107,17 @@
 .todo-list-container {
     overflow-y: scroll;
     max-height: 500px;
+}
+
+.todo-list-container::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+}
+
+.todo-list-container {
+    overflow-y: scroll;
+    max-height: 500px;
+    padding-right: 10px;
 }
 
 .todo-list-container::-webkit-scrollbar {
