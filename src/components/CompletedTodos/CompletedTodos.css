@@ -1,0 +1,45 @@
+.completed-todos {
+    background-color: #4e6190;
+    border-radius: 8px;
+    padding: 16px;
+    margin-left: 16px;
+    max-width: 250x;
+    max-height: 400px;
+    position: absolute;
+    top: 40px;
+    right: 20px;
+}
+
+.completed-todos h2 {
+    margin-top: 0;
+}
+
+.completed-todos ul {
+    list-style: none;
+    padding: 0;
+    max-height: 350px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.completed-todos li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #3c5078;
+    padding: 8px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+}
+
+.delete-completed {
+    background-color: transparent;
+    border: none;
+    color: #d65422;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.delete-completed:hover {
+    color: #eda28a;
+}

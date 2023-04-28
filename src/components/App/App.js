@@ -3,6 +3,7 @@ import './App.css';
 import CreateTodoForm from '../CreateTodoForm/CreateTodoForm';
 import TodoList from '../TodoList/TodoList';
 import { fetchTodos, createTodo, updateTodo, deleteTodo } from '../../utils/api';
+import CompletedTodos from '../CompletedTodos/CompletedTodos';
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -20,11 +21,13 @@ function App() {
     setTodos((prevTodos) => [...prevTodos, data]);
   };
 
-  const handleUpdateTodo = async (id, updatedTodo) => {
+  const handleUpdateTodo = async (id, updatedTodo, delay = 0) => {
     const data = await updateTodo(id, updatedTodo);
-    setTodos((prevTodos) =>
-      prevTodos.map((todo) => (todo._id === data._id ? data : todo))
-    );
+    setTimeout(() => {
+      setTodos((prevTodos) =>
+        prevTodos.map((todo) => (todo._id === data._id ? data : todo))
+      );
+    }, delay);
   };
 
   const handleDeleteTodo = async (id) => {
@@ -37,11 +40,12 @@ function App() {
       <CreateTodoForm onCreateTodo={handleCreateTodo} />
       <div className="todo-list-container">
         <TodoList
-          todos={todos}
+          todos={todos.filter((todo) => !todo.completed)}
           onUpdateTodo={handleUpdateTodo}
           onDeleteTodo={handleDeleteTodo}
         />
       </div>
+      <CompletedTodos todos={todos.filter((todo) => todo.completed)} onDelete={handleDeleteTodo} />
     </div>
   );
 }

@@ -124,3 +124,18 @@
     width: 0;
     background: transparent;
 }
+
+@keyframes slideOutRight {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+.slide-out-right {
+    animation: slideOutRight 3s forwards;
+}

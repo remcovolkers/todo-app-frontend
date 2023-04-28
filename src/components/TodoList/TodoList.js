@@ -5,7 +5,7 @@ function TodoList({ todos, onUpdateTodo, onDeleteTodo }) {
     return (
         <div className="todo-list">
             <h2>Todo List</h2>
-            <ul>
+            <ul className="custom-scrollbar">
                 {todos.map((todo) => (
                     <TodoItem
                         key={todo._id}

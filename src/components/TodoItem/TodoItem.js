@@ -3,11 +3,13 @@ import './TodoItem.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faEdit, faSave } from '@fortawesome/free-solid-svg-icons';
 import CustomConfetti from '../CustomConfetti/CustomConfetti';
+import '../shared/shared.css';
 
 const TodoItem = ({ todo, onDelete, onUpdate }) => {
     const [isEditing, setIsEditing] = useState(false);
     const [updatedTodo, setUpdatedTodo] = useState(todo);
     const [confetti, setConfetti] = useState(false);
+    const [slideOut, setSlideOut] = useState(false);
 
     const handleDelete = async () => {
         onDelete(todo._id);
@@ -41,18 +43,25 @@ const TodoItem = ({ todo, onDelete, onUpdate }) => {
             ...updatedTodo,
             completed: !updatedTodo.completed,
         });
-        onUpdate(todo._id,
-            {
-                ...updatedTodo,
-                completed: !updatedTodo.completed
-            });
+
         if (!updatedTodo.completed) {
             setConfetti(true);
+            setSlideOut(true);
             setTimeout(() => {
                 setConfetti(false);
-            }, 1000);
+                onUpdate(todo._id, {
+                    ...updatedTodo,
+                    completed: !updatedTodo.completed,
+                }, 1500);
+            }, 500);
+        } else {
+            onUpdate(todo._id, {
+                ...updatedTodo,
+                completed: !updatedTodo.completed,
+            });
         }
     };
+
 
     useEffect(() => {
         if (confetti) {
@@ -62,7 +71,7 @@ const TodoItem = ({ todo, onDelete, onUpdate }) => {
     }, [confetti]);
 
     return (
-        <div className={`todo-item ${updatedTodo.completed ? 'completed' : ''}`}>
+        <div className={`todo-item ${updatedTodo.completed ? 'completed' : ''} ${slideOut ? 'slide-out-right' : ''}`}>
             <CustomConfetti active={confetti} />
             <div className="todo-item-content">
                 <audio id="cheering-sound" src={`${process.env.PUBLIC_URL}/engineer-job-well-done.mp3`} preload="auto" />
